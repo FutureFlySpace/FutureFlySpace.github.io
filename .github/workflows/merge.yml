@@ -16,3 +16,4 @@ jobs:
       env:
         BASE: "develop"
         TARGET: "main"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
