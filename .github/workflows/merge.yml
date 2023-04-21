@@ -1,0 +1,19 @@
+name: Merge
+
+on: [workflow_dispatch]
+
+jobs:
+  main-merge:
+    name: Main Merge
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3.3.0
+      with:
+        ref: develop
+    - name: main-merge
+      run: | 
+        chmod +x .github/workflows/merge.sh && .github/workflows/merge.sh
+      env:
+        BASE: "develop"
+        TARGET: "main"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
