@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3.3.0
       with:
-        ref: main
+        ref: develop
     - name: main-merge
       run: | 
         chmod +x .github/workflows/merge.sh && .github/workflows/merge.sh
