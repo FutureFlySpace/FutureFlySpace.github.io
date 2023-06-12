@@ -1,0 +1,132 @@
+<html lang="de">
+
+<head>
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            background-image: url(https://cdn.pixabay.com/photo/2017/03/02/16/54/iceland-2111811_1280.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-decoration: underline;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 0;
+        }
+
+        footer {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.597);
+            padding: 10px;
+            text-align: center;
+            margin-top: auto;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            margin-top: 20vh;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.511);
+            border-radius: 10px;
+        }
+
+        .container input[type="text"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+            background-color: black;
+            border: 1px solid white;
+            border-radius: 3px;
+        }
+
+        .container input[type="text"]:focus,
+        .container input[type="password"]:focus {
+            border-color: rgb(172, 172, 172);
+            outline: none;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: rgb(127, 127, 127);
+            border: 1px solid rgb(127, 127, 127);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sign up</h1>
+        <input type="text" id="username" placeholder="Benutzername">
+        <input type="password" id="password" placeholder="Passwort">
+        <button onclick="sendData()">Registrieren</button>
+        <button onclick="login()">Anmelden</button>
+    </div>
+
+    <script>
+        function sendData() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            var url = 'http://localhost:8000/api/signup?u=' + encodeURIComponent(username) + '&p=' + encodeURIComponent(password);
+
+            // Send request to the API
+            fetch(url, {
+                method: 'GET'
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        console.log("Data sent successfully");
+                        // Perform any desired actions after successful data submission
+                        window.location.href = "http://localhost:8123/home.html";
+                    } else {
+                        console.log("Error sending data");
+                        // Handle errors during data submission
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error sending data:", error);
+                    // Handle errors during data submission
+                });
+        }
+
+        function login() {
+            window.location.href = "https://FutureFlySpace.github.io/login.html";
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2023 FutureFly. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+
+</html>
